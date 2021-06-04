@@ -1,19 +1,38 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateFormDto } from './dto/create-form.dto';
 import { UpdateFormDto } from './dto/update-form.dto';
+import { getConnection } from "typeorm";
+import { LessThan, Repository } from 'typeorm';
+import { Form } from './entities/form.entity';
 
 @Injectable()
 export class FormService {
-  create(createFormDto: CreateFormDto) {
-    return 'This action adds a new form';
+
+  constructor(
+    @InjectRepository(Form)
+    private FormRepository: Repository<Form>,
+  ) {}
+
+  create(createFormDto: CreateFormDto): Promise<Form> {
+    const form = new Form();
+
+    form.selectedState = createFormDto.selectedState;
+    form.Firstname = createFormDto.Firstname;
+    form.Lastname = createFormDto.Lastname;
+    form.Address = createFormDto.Address;
+    form.Zip = createFormDto.Zip;
+    form.City = createFormDto.City;
+    return this.FormRepository.save(form);
+
   }
 
-  findAll() {
-    return `This action returns all form`;
+  findAll(): Promise<Form[]> {
+    return this.FormRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} form`;
+    return this.FormRepository.findOne(id);
   }
 
   update(id: number, updateFormDto: UpdateFormDto) {
@@ -21,6 +40,6 @@ export class FormService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} form`;
+    return this.FormRepository.delete(id);
   }
 }

@@ -53,3 +53,14 @@
 <button pButton type="button" label="Save" (click)="onBasicUploadAuto(angajat)"></button>
 
 </p-card>
+
+<div>
+  <li *ngFor="let form of allForms">
+    {{form.selectedState}}
+    {{form.Firstname}}
+    {{form.Lastname}}
+    {{form.Address}}
+    {{form.Zip}}
+    {{form.City}}
+  </li>
+</div>

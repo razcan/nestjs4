@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormService } from './form.service';
+import { HttpClient } from '@angular/common/http';
+import { Form } from './form.model';
 
 @Component({
   selector: 'app-form',
@@ -24,7 +27,9 @@ states: any[] = [
   {name: 'Washington'}
 ];
 
-  constructor() { }
+allForms: Array<Form> = [];
+
+  constructor(private formService: FormService, private httpClient:HttpClient) { }
 
   onBasicUploadAuto(zip:any) {
     console.log(zip);
@@ -32,6 +37,13 @@ states: any[] = [
   
 
   ngOnInit(): void {
+    this.getAllForms();
+  }
+
+  private getAllForms() {
+    this.formService.getAllForms().subscribe(allForms => {
+      this.allForms = allForms;
+    });
   }
 
 }
