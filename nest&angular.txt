@@ -1,0 +1,52 @@
+nestjs+angula+mysql:
+
+ng serve --open
+
+nest start --watch
+
+generare componenta nest form:
+nest g resource form
+npm install --save @nestjs/typeorm typeorm mysql2
+npm i --save-dev webpack-node-externals run-script-webpack-plugin webpack
+
+
+generare componenta angular form:
+ng g component form
+
+
+ng generate module app-routing --flat --module=app
+
+install primeng:
+npm install primeng --save
+npm install primeicons --save
+npm audit fix
+npm install @fullcalendar/core@4.1.0 --save
+npm install quill
+npm install @fullcalendar/daygrid --save
+npm install @fullcalendar/timegrid --save
+npm install @fullcalendar/interaction --save
+npm install @angular/cdk --save
+
+add styles in angular.json:
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/quill/dist/quill.snow.css",
+              "node_modules/@fullcalendar/core/main.min.css",
+              "node_modules/@fullcalendar/daygrid/main.min.css",
+              "node_modules/@fullcalendar/timegrid/main.min.css"
+
+echo "# nestjs4" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/razcan/nestjs4.git
+git push -u origin main
+…or push an existing repository from the command line
+git remote add origin https://github.com/razcan/nestjs4.git
+git branch -M main
+git push -u origin main
+
+
+  
