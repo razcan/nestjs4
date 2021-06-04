@@ -1,0 +1,55 @@
+
+<div class="toolbar" role="banner">
+  <img
+    width="40"
+    alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+  />
+</div>
+
+<p-card header="Employee Form" [style]="{'width': '35rem', 'margin-top': '2em'}">
+<div class="card">
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-md-6">
+      <label for="firstname6">Firstname</label>
+      <input id="firstname6" type="text" pInputText [(ngModel)]="angajat.Firstname" />
+    </div>
+    <br>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="lastname6">Lastname</label>
+      <input id="lastname6" type="text" pInputText  [(ngModel)]="angajat.Lastname"/>
+    </div>
+    <br>
+    <div class="p-field p-col-12">
+      <label for="address">Address</label>
+      <textarea id="address" type="text" rows="4" pInputTextarea [(ngModel)]="angajat.Address"></textarea>
+    </div>
+    <br>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="city">City</label>
+      <input id="city" type="text" pInputText [(ngModel)]="angajat.City"/>
+    </div>
+    <br>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="state">State</label>
+      <p-dropdown
+        inputId="state"
+        [options]="states"
+        [(ngModel)]="angajat.selectedState"
+        placeholder="Select"
+        optionLabel="name"
+      ></p-dropdown>
+    </div>
+    <br>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="zip">Zip</label>
+      <input id="zip" type="text" pInputText [(ngModel)]="angajat.Zip"/>
+    </div>
+    <br>
+  </div>
+</div>
+<br>
+
+<button pButton type="button" label="Save" (click)="onBasicUploadAuto(angajat)"></button>
+
+</p-card>
