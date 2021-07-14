@@ -11,7 +11,7 @@ import { Form } from './form.model';
 export class FormComponent implements OnInit {
 
   angajat = {
-    selectedState: '',
+    // selectedState: '',
     Firstname:  '',
     Lastname: '',
     Address:  '',
@@ -31,10 +31,6 @@ allForms: Array<Form> = [];
 
   constructor(private formService: FormService, private httpClient:HttpClient) { }
 
-  onBasicUploadAuto(zip:any) {
-    console.log(zip);
-  }
-  
 
   ngOnInit(): void {
     this.getAllForms();
@@ -43,6 +39,12 @@ allForms: Array<Form> = [];
   private getAllForms() {
     this.formService.getAllForms().subscribe(allForms => {
       this.allForms = allForms;
+    });
+  }
+
+  onBasicUploadAuto(angajat:any) {
+    console.log(this.angajat);
+    this.formService.create_new_form(this.angajat).subscribe((allForms: Form[]) => {
     });
   }
 
