@@ -1,6 +1,6 @@
 export class CreateFormDto {
 
-        selectedState: string;
+        selectedState: string = 'mydefault';
         Firstname:  string;
         Lastname: string;
         Address:  string;

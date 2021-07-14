@@ -14,10 +14,10 @@ export class FormService {
     private FormRepository: Repository<Form>,
   ) {}
 
-  create(createFormDto: CreateFormDto): Promise<Form> {
+  create_new_form(createFormDto: CreateFormDto): Promise<Form> {
     const form = new Form();
 
-    form.selectedState = createFormDto.selectedState;
+    form.selectedState = '';
     form.Firstname = createFormDto.Firstname;
     form.Lastname = createFormDto.Lastname;
     form.Address = createFormDto.Address;

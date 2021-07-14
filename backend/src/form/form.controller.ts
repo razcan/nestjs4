@@ -8,8 +8,8 @@ export class FormController {
   constructor(private readonly formService: FormService) {}
 
   @Post()
-  create(@Body() createFormDto: CreateFormDto) {
-    return this.formService.create(createFormDto);
+  create_new_form(@Body() createFormDto: CreateFormDto) {
+    return this.formService.create_new_form(createFormDto);
   }
 
   @Get()
