@@ -1,0 +1,22 @@
+button {
+    position: relative;
+    z-index: 1;
+  }
+  
+  table,td {
+      border: 1px solid silver;
+      border-collapse: collapse
+  }
+  
+  td {
+      padding: .5em
+  }
+  
+  #table-list-styles td {
+      vertical-align: top;
+  }
+  
+  .page-break {
+      page-break-before: always;
+  }
+  
