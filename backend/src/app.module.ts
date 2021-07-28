@@ -8,12 +8,15 @@ import { MulterModule } from '@nestjs/platform-express';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [FormModule,
-    MulterModule.registerAsync({
+  imports: 
+  [
+  MulterModule.registerAsync({
       useFactory: () => ({
         dest: './upload',
       }),
-    }),
+    }),  
+  FormModule,
+
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
