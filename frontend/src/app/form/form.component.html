@@ -32,16 +32,36 @@
       <label for="zip">Zip</label>
       <input id="zip" type="text" pInputText [(ngModel)]="angajat.Zip"/>
     </div>
+    <br><br><br><br>
+
+
   </div>
   </div>
 </div>
 </p-card>
 
 <button pButton type="button" label="Download" (click)="htmlToPdf()"></button>
+<br><br>
+<button pButton type="button" label="Download 2" (click)="generatePDF()"></button>
+<br><br>
+
+        <h5>Upload Form</h5>
+        <p-fileUpload name="demo[]"  (onClear)="BasicUpload($event)" (onBeforeUpload)="BeforeUpload($event)" accept="image/*"  [showUploadButton]="true">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>
+        </p-fileUpload>
+
+<angular-file-uploader
+      [config]="afuConfig">
+</angular-file-uploader>
+
 
 <!--<button pButton type="button" label="Download" (click)="htmlToPdf()"></button>
 https://codingshiksha.com/angular/angular-9-tutorial-to-convert-html-to-pdf-using-jspdf-html2canvas-library-full-project-for-beginners/
-
+https://stackblitz.com/edit/jspdf?file=app%2Fapp.component.ts
 
 <div>
   <li *ngFor="let form of allForms">

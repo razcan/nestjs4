@@ -10,6 +10,9 @@ import * as htmlToImage from 'html-to-image';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { encode, decode } from 'js-base64';
+import {Base64} from 'js-base64';
+
 
 @Component({
   selector: 'app-form',
@@ -18,6 +21,46 @@ import html2canvas from 'html2canvas';
 })
 export class FormComponent implements OnInit {
   [x: string]: any;
+
+  uploadedFiles: any[] = [];
+
+  afuConfig = {
+    multiple: true,
+    theme: "dragNDrop",
+    formatsAllowed: ".jpg,.png",
+    uploadAPI: {
+      url:"https://slack.com/api/files.upload"
+    }
+};
+
+
+  constructor(private formService: FormService, private httpClient:HttpClient) { }
+
+  onBasicUpload(event: { files: any; }) {
+      for(let file of event.files) {
+          this.uploadedFiles.push(file);
+      }  
+  }
+
+  BasicUpload(event:  any){
+    console.log(event);
+  }
+
+
+  BeforeUpload(event: { files: any; }){
+    for(let file of event.files) {
+      this.uploadedFiles.push(file);
+  }  
+    var x =  Base64.encode('filgge');
+    console.log(x); 
+    var y =  Base64.decode(x);
+    console.log(y); 
+    console.log(this.uploadedFiles.length)
+    // for(let file of event.files) {
+    //  var x =  Base64.encode(file); 
+    // }    
+  }
+  
   
   generatePDF() {
     var data = document.getElementById('pdfTable')!;
@@ -30,6 +73,7 @@ export class FormComponent implements OnInit {
       var pdf = new jsPDF('p', 'mm', [297, 210]);
       var position = 0;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.line(0, 0, 20, 20)
       pdf.save('newPDF.pdf');
     });
   }
@@ -59,7 +103,7 @@ states: any[] = [
 
 allForms: Array<Form> = [];
 
-  constructor(private formService: FormService, private httpClient:HttpClient) { }
+
 
 
   ngOnInit(): void {
@@ -112,7 +156,8 @@ employee = {
     // doc.text(myJSON,10, 10);
     // doc.save('demo.pdf')
 
-    var doc = new jsPDF('l', 'mm', [800, 700]);
+    var doc = new jsPDF('l', 'mm', [700, 700]);
+    doc.line(1, 1, 40, 40)
     doc.html(ta, {
       callback: function (doc) {
         // doc.setFont("helvetica");
