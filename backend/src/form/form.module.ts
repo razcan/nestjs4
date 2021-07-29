@@ -19,3 +19,9 @@ import { MulterModule } from '@nestjs/platform-express';
   providers: [FormService]
 })
 export class FormModule {}
+
+
+// curl --location --request POST 'http://127.0.0.1:3000/form/file4' \
+// --form 'files=@"/C:/Users/razvan.mustata/Desktop/pz1.jpg"' \
+// --form 'files=@"/C:/Users/razvan.mustata/Desktop/pz2.jpg"' \
+// --form 'files=@"/C:/Users/razvan.mustata/Desktop/pz3.jpg"'
