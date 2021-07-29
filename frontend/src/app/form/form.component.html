@@ -40,13 +40,35 @@
 </div>
 </p-card>
 
+
 <button pButton type="button" label="Download" (click)="htmlToPdf()"></button>
 <br><br>
 <button pButton type="button" label="Download 2" (click)="generatePDF()"></button>
 <br><br>
+<button pButton type="button" label="Get" (click)="sendGetRequest()"></button>
+<br><br>
+    
+<h2 style="text-align: center">Multiple</h2>
+<div style="text-align: center">
+  <form>      
+    <div>
+      <input type="file" name="images" multiple (change)="selectMultipleImage($event)" />
+    </div>
+    <br>
+    <div>
+      <button type="submit" (click)="onMultipleSubmit()">Multiple Upload</button>
+    </div>
+  </form>
 
+
+
+<!--
+<input type="file" (change)="onFileChange($event)" multiple />
+<angular-file-uploader
+      [config]="afuConfig">
+</angular-file-uploader>
         <h5>Upload Form</h5>
-        <p-fileUpload name="demo[]"  (onClear)="BasicUpload($event)" (onBeforeUpload)="BeforeUpload($event)" accept="image/*"  [showUploadButton]="true">
+        <p-fileUpload name="demo[]"  (onBeforeUpload)="onFileChange($event)"  accept="image/*"  [showUploadButton]="true">
                 <ng-template pTemplate="content">
                     <ul *ngIf="uploadedFiles.length">
                         <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
@@ -54,9 +76,7 @@
                 </ng-template>
         </p-fileUpload>
 
-<angular-file-uploader
-      [config]="afuConfig">
-</angular-file-uploader>
+-->
 
 
 <!--<button pButton type="button" label="Download" (click)="htmlToPdf()"></button>

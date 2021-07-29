@@ -26,6 +26,7 @@
     "@types/html2canvas": "^1.0.0",
     "@types/jspdf": "^2.0.0",
     "angular-file-uploader": "^7.0.3",
+    "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
     "html-to-image": "^1.7.0",
     "html-to-pdfmake": "^2.3.2",

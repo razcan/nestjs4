@@ -18,6 +18,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {DropdownModule} from 'primeng/dropdown';
 import {CardModule} from 'primeng/card';
 import {ToastModule} from 'primeng/toast';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFileUploaderModule } from "angular-file-uploader";
 
@@ -44,6 +45,7 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
     FormsModule,
     ToastModule,
     AngularFileUploaderModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

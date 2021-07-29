@@ -12,6 +12,18 @@ import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { encode, decode } from 'js-base64';
 import {Base64} from 'js-base64';
+import Axios, {
+  AxiosInstance,
+  AxiosPromise,
+  AxiosRequestConfig,
+  AxiosResponse,
+  CancelTokenSource,
+} from 'axios';
+import { Validators } from '@angular/forms';
+import {HttpParams} from "@angular/common/http";
+import { Observable, throwError } from 'rxjs';
+import { map, catchError} from 'rxjs/operators';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -20,35 +32,135 @@ import {Base64} from 'js-base64';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
+
+  
+  constructor(private formService: FormService, private httpClient:HttpClient, private http:HttpClient) { }
+
+  ngOnInit(): void {
+    this.getAllForms();
+  }
+
+
   [x: string]: any;
 
-  uploadedFiles: any[] = [];
+ public uploadedFiles: any[] = [];
+ multipleImages = [];
+ 
+
+ public REST_API_SERVER: string = "http://127.0.0.1:3000/form/file4";
+
+ selectMultipleImage(event: any){
+  if (event.target.files.length > 0) {
+    this.multipleImages = event.target.files;
+  }
+}
+
+
+onMultipleSubmit(){
+  const formData = new FormData();
+  for(let img of this.multipleImages){
+    formData.append('files', img);
+  }
+
+  this.http.post<any>('http://127.0.0.1:3000/form/file4', formData).subscribe(
+    (res) => console.log(res),
+    (err) => console.log(err)
+  );
+}
+
+
+ onFileSelect(event: Event) {
+  const element = event.currentTarget as HTMLInputElement;
+  let fileList: FileList | null = element.files;
+  if (fileList) {
+      const file = fileList[0];
+      this.uploadForm.get('profile').setValue(file);
+  }
+}
+
+// onSubmit() {
+//   const formData = new FormData();
+//   formData.append('files', this.uploadForm.get('profile').value);
+
+//   this.httpClient.post<any>(this.SERVER_URL, formData).subscribe(
+//     (res) => console.log(res),
+//     (err) => console.log(err)
+//   );
+// }
+
+
+ public sendGetRequest(){
+  this.formService.getAllForms()
+      .subscribe(
+        (response) => {                           //next() callback
+          console.log('response received')
+          this.repos = response; 
+          console.log(this.repos);
+        },
+        (error) => {                              //error() callback
+          console.error('Request failed with error')
+          this.errorMessage = error;
+          this.loading = false;
+        },
+        () => {                                   //complete() callback
+          console.error('Request completed')      //This is actually not needed 
+          this.loading = false; 
+        })
+  }
+
+
+ onFileChange(event: Event){
+  const element = event.currentTarget as HTMLInputElement;
+  let fileList: FileList | null = element.files;
+  if (fileList) {
+    console.log("FileUpload -> files", fileList);
+
+    const params = new HttpParams()
+    .set('orderBy', '"$key"')
+    .set('limitToFirst', "1");
+
+    this.courses = this.http
+    .get("http://127.0.0.1:3000/form", {params})
+  }
+ }
 
   afuConfig = {
     multiple: true,
     theme: "dragNDrop",
     formatsAllowed: ".jpg,.png",
     uploadAPI: {
-      url:"https://slack.com/api/files.upload"
+      // url:"https://slack.com/api/files.upload"
+      url:"http://127.0.0.1:3000/form/file4",
+      // method:"POST",
+      headers: {
+        "Content-Type" : "text/plain;charset=UTF-8"
+         },
     }
 };
 
 
-  constructor(private formService: FormService, private httpClient:HttpClient) { }
 
-  onBasicUpload(event: { files: any; }) {
-      for(let file of event.files) {
-          this.uploadedFiles.push(file);
-      }  
-  }
+  // onUpload(event: { files: any; }) {
+  //   console.log('sdsdsds');
+  //   Axios.post('http://127.0.0.1:3000/form/file4', 
+  //             {
+  //               files: '/C:/Users/razvan.mustata/Desktop/pz1.jpg',
+  //             })
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  // }
 
-  BasicUpload(event:  any){
-    console.log(event);
-  }
+  onUpload(event: any) {
+    console.log(this.uploadedFiles[0]);
+}
 
 
   BeforeUpload(event: { files: any; }){
-    for(let file of event.files) {
+    for(let file of this.uploadedFiles) {
       this.uploadedFiles.push(file);
   }  
     var x =  Base64.encode('filgge');
@@ -106,9 +218,6 @@ allForms: Array<Form> = [];
 
 
 
-  ngOnInit(): void {
-    this.getAllForms();
-  }
 
   private getAllForms() {
     this.formService.getAllForms().subscribe(allForms => {
