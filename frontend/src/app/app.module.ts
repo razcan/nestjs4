@@ -19,14 +19,16 @@ import {DropdownModule} from 'primeng/dropdown';
 import {CardModule} from 'primeng/card';
 import {ToastModule} from 'primeng/toast';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {GMapModule} from 'primeng/gmap';
 import { AngularFileUploaderModule } from "angular-file-uploader";
+import { TinmarmapComponent } from './tinmarmap/tinmarmap.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponent
+    FormComponent,
+    TinmarmapComponent
   ],
   imports: [
     AccordionModule,
@@ -45,7 +47,8 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
     FormsModule,
     ToastModule,
     AngularFileUploaderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GMapModule
   ],
   providers: [],
   bootstrap: [AppComponent]

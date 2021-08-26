@@ -36,6 +36,8 @@ export class FormComponent implements OnInit {
   
   constructor(private formService: FormService, private httpClient:HttpClient, private http:HttpClient) { }
 
+  
+
   ngOnInit(): void {
     this.getAllForms();
   }
