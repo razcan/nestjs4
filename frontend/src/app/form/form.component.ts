@@ -49,7 +49,7 @@ export class FormComponent implements OnInit {
  multipleImages = [];
  
 
- public REST_API_SERVER: string = "http://127.0.0.1:3000/form/file4";
+ public REST_API_SERVER: string = "/api/form/file4";
 
  selectMultipleImage(event: any){
   if (event.target.files.length > 0) {
@@ -64,7 +64,7 @@ onMultipleSubmit(){
     formData.append('files', img);
   }
 
-  this.http.post<any>('http://127.0.0.1:3000/form/file4', formData).subscribe(
+  this.http.post<any>('/api/form/file4', formData).subscribe(
     (res) => console.log(res),
     (err) => console.log(err)
   );
@@ -122,7 +122,7 @@ onMultipleSubmit(){
     .set('limitToFirst', "1");
 
     this.courses = this.http
-    .get("http://127.0.0.1:3000/form", {params})
+    .get("/api/form", {params})
   }
  }
 
@@ -132,7 +132,7 @@ onMultipleSubmit(){
     formatsAllowed: ".jpg,.png",
     uploadAPI: {
       // url:"https://slack.com/api/files.upload"
-      url:"http://127.0.0.1:3000/form/file4",
+      url:"/api/form/file4",
       // method:"POST",
       headers: {
         "Content-Type" : "text/plain;charset=UTF-8"
@@ -144,7 +144,7 @@ onMultipleSubmit(){
 
   // onUpload(event: { files: any; }) {
   //   console.log('sdsdsds');
-  //   Axios.post('http://127.0.0.1:3000/form/file4', 
+  //   Axios.post('/api/form/file4', 
   //             {
   //               files: '/C:/Users/razvan.mustata/Desktop/pz1.jpg',
   //             })

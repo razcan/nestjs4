@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 export class FormService {
   
   allForms:any= [];
-  url = 'http://127.0.0.1:3000/form';
+  url = '/api/form';
 
   constructor(private httpClient:HttpClient) { }
 
@@ -21,7 +21,7 @@ export class FormService {
   urlFiltered: any =[];
  
   getAllEmployeesfilter(val:any): Observable<Array<any>>{
-    this.urlFiltered = 'http://127.0.0.1:3000/form/'+val;
+    this.urlFiltered = '/api/form/'+val;
     this.allFormsFiltered = this.httpClient.get<Array<any>>(this.urlFiltered);
     return  this.urlFiltered;
   }

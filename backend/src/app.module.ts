@@ -22,7 +22,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       host: 'localhost',
       port: 3306,
       username: 'razvan',
-      password: 'Vasilica#25',
+      password: 'vasilica#25',
       database: 'api_local',
       entities: [],
       synchronize: true,
